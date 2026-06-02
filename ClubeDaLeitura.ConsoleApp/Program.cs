@@ -28,15 +28,15 @@ while (true)
         }
         else if (opcaoMenuInterno == "2")
         {
-
+            telaCaixas.Editar();
         }
         else if (opcaoMenuInterno == "3")
         {
-
+            telaCaixas.Excluir();
         }
         else if (opcaoMenuInterno == "4")
         {
-
+            telaCaixas.Visualizar(true);
         }
     }
 

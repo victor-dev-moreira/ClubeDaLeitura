@@ -2,7 +2,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas;
 
 public class TelaCaixas()
 {
-    private RepositorioCaixa repositorioCaixa;
+    private RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
     public string ObterMenuCaixas()
     {
         Console.WriteLine("---------------------------------");
@@ -39,13 +39,46 @@ public class TelaCaixas()
 
     public void Editar()
     {
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Edicão de Caixas");
+        Console.WriteLine("---------------------------------");
 
+        Visualizar(false);
 
+        Console.WriteLine("---------------------------------");
+        Console.Write("Qual Id da Caixa que deseja editar? ");
+        int idSelecionado = int.Parse(Console.ReadLine());
+
+        Caixa caixaAtualizada = ObterDadosCadastrais();
+
+        repositorioCaixa.Editar(idSelecionado, caixaAtualizada);
+
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine($"O registro \"{caixaAtualizada.Etiqueta}\" foi editado com sucesso!");
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Digite ENTER para continuar");
+        Console.ReadLine();
     }
 
     public void Excluir()
     {
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Exclusão de Caixa");
+        Console.WriteLine("---------------------------------");
 
+        Visualizar(false);
+
+        Console.WriteLine("---------------------------------");
+        Console.Write("Qual Id da Caixa que deseja editar? ");
+        int idSelecionado = int.Parse(Console.ReadLine());
+
+        repositorioCaixa.Excluir(idSelecionado);
+
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine($"O registro de ID \"{idSelecionado}\" foi excluído com sucesso!");
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Digite ENTER para continuar");
+        Console.ReadLine();
     }
 
     public void Visualizar(bool deveExibirCabecalho)
@@ -63,8 +96,25 @@ public class TelaCaixas()
             );
         Caixa[] registros = repositorioCaixa.SelecionarTodos();
 
-        /// parei aqui
-        /// 
+        for (int i = 0; i < registros.Length; i++)
+        {
+            Caixa c = registros[i];
+
+            if (c == null)
+                continue;
+
+            Console.WriteLine(
+            "{0, -7} | {1, -20} | {2, -10} | {3, -20}",
+            c.Id, c.Etiqueta, c.Cor, c.DiasDeEmprestimo
+            );
+        }
+
+        if (deveExibirCabecalho)
+        {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Digite ENTER para continuar");
+            Console.ReadLine();
+        }
     }
 
     private Caixa ObterDadosCadastrais()
@@ -72,10 +122,10 @@ public class TelaCaixas()
         Console.Write("Digite o nome da etiqueta da caixa: ");
         string? etiqueta = Console.ReadLine();
 
-        Console.WriteLine("Digite o nome da cor da caixa: ");
+        Console.Write("Digite o nome da cor da caixa: ");
         string? cor = Console.ReadLine();
 
-        Console.WriteLine("Informe o tempo de empréstimo das revistas da caixa: ");
+        Console.Write("Informe o tempo de empréstimo das revistas da caixa: ");
         int diasDoEmprestimo = int.Parse(Console.ReadLine());
 
         Caixa novaCaixa = new Caixa(etiqueta, cor, diasDoEmprestimo);
