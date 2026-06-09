@@ -1,11 +1,15 @@
 ﻿using System.ComponentModel.Design;
 using ClubeDaLeitura.ConsoleApp.Compartilhado;
 using ClubeDaLeitura.ConsoleApp.ModuloCaixas;
+using ClubeDaLeitura.ConsoleApp.ModuloRevistas;
+
+RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
+TelaCaixas telaCaixas = new TelaCaixas(repositorioCaixa);
+
+RepositorioRevista repositorioRevista = new RepositorioRevista();
+TelaRevistas telaRevista = new TelaRevistas(repositorioRevista, repositorioCaixa);
 
 TelaPrincipal telaPrincipal = new TelaPrincipal();
-TelaCaixas telaCaixas = new TelaCaixas();
-
-
 while (true)
 {
     string opcaoMenuPrincipal = telaPrincipal.ObterMenuPrincipal();
@@ -13,40 +17,55 @@ while (true)
     if (opcaoMenuPrincipal == "S")
         break;
 
-
-
-    while (true)
+    if (opcaoMenuPrincipal == "1") // Caixas
     {
-        string opcaoMenuInterno = telaCaixas.ObterMenuCaixas();
+        while (true)
+        {
+            string opcaoMenuInterno = telaCaixas.ObterMenuCaixas();
 
+            if (opcaoMenuInterno == "S")
+                break;
+
+            else if (opcaoMenuInterno == "1")
+            {
+                telaCaixas.Cadastro();
+            }
+            else if (opcaoMenuInterno == "2")
+            {
+                telaCaixas.Editar();
+            }
+            else if (opcaoMenuInterno == "3")
+            {
+                telaCaixas.Excluir();
+            }
+            else if (opcaoMenuInterno == "4")
+            {
+                telaCaixas.Visualizar(true);
+            }
+        }
+    }
+    else if (opcaoMenuPrincipal == "2") // Revistas
+    {
+        string opcaoMenuInterno = telaRevista.ObterMenuRevista();
         if (opcaoMenuInterno == "S")
             break;
 
         else if (opcaoMenuInterno == "1")
         {
-            telaCaixas.Cadastro();
+            telaRevista.Cadastro();
         }
         else if (opcaoMenuInterno == "2")
         {
-            telaCaixas.Editar();
+            telaRevista.Editar();
         }
         else if (opcaoMenuInterno == "3")
         {
-            telaCaixas.Excluir();
+            telaRevista.Excluir();
         }
         else if (opcaoMenuInterno == "4")
         {
-            telaCaixas.Visualizar(true);
+            telaRevista.Visualizar(true);
         }
-    }
-
-    if (opcaoMenuPrincipal == "1") // Caixas
-    {
-
-    }
-    else if (opcaoMenuPrincipal == "2") // Revistas
-    {
-
     }
     else if (opcaoMenuPrincipal == "3") // Amigos
     {

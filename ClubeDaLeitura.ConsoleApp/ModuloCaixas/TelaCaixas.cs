@@ -2,7 +2,13 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas;
 
 public class TelaCaixas()
 {
-    private RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
+    private readonly RepositorioCaixa repositorioCaixa;
+
+    public TelaCaixas(RepositorioCaixa repositorioCaixa)
+    {
+        this.repositorioCaixa = repositorioCaixa;
+    }
+
     public string ObterMenuCaixas()
     {
         Console.WriteLine("---------------------------------");
