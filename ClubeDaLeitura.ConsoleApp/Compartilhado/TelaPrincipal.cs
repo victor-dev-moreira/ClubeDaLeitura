@@ -13,7 +13,7 @@ public class TelaPrincipal()
         Console.WriteLine("4 - Gerenciar empréstimos");
         Console.WriteLine("S - Sair");
         Console.WriteLine("---------------------------------");
-        Console.WriteLine("> ");
+        Console.Write("> ");
 
         string? opcaoMenuPrincipal = Console.ReadLine()?.ToUpper();
         return opcaoMenuPrincipal;
