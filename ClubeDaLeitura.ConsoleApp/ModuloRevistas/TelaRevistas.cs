@@ -51,17 +51,87 @@ public class TelaRevistas
 
     public void Editar()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Editar Revista");
+        Console.WriteLine("---------------------------------");
+
+        Visualizar(false);
+
+        Console.Write("Qual ID da revista que deseja editar? ");
+        int idSelecionado = int.Parse(Console.ReadLine());
+
+        Revista novaRevista = ObterDadosCadastrais();
+
+        repositorioRevista.Editar(idSelecionado, novaRevista);
+
+
     }
 
     public void Excluir()
     {
-        throw new NotImplementedException();
-    }
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Excluir Revista");
+        Console.WriteLine("---------------------------------");
 
+        Visualizar(false);
+
+        Console.Write("Qual ID da revista que deseja excluir? ");
+        int idSelecionado = int.Parse(Console.ReadLine());
+
+        Revista[] registros = repositorioRevista.SelecionarTodos();
+
+        for (int i = 0; i < registros.Length; i++)
+        {
+            Revista r = registros[i];
+
+            if (r.Id == idSelecionado)
+            {
+                registros[i] = null;
+                break;
+            }
+        }
+
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine($"Revista {idSelecionado} excluida com sucesso!");
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Pressione enter para prosseguir...");
+        Console.ReadLine();
+    }
     public void Visualizar(bool deveExibirCabecalho)
     {
+        if (deveExibirCabecalho)
+        {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Visualização de Revistas");
+            Console.WriteLine("---------------------------------");
+        }
 
+        Console.WriteLine(
+            "{0, -7} | {1, -20} | {2, -10} | {3, -20} | {4, -20}",
+            "Id", "Etiqueta", "Cor", "Tempo de Empréstimo", "Caixa"
+        );
+
+        Revista[] registros = repositorioRevista.SelecionarTodos();
+
+        for (int i = 0; i < registros.Length; i++)
+        {
+            Revista r = registros[i];
+
+            if (registros[i] == null)
+                continue;
+
+            Console.WriteLine(
+            "{0, -7} | {1, -20} | {2, -10} | {3, -20} | {4, -20}",
+            r.Id, r.Titulo, r.NumeroEdicao, r.AnoPublicacao, r.Caixa.Etiqueta
+            );
+        }
+
+        if (deveExibirCabecalho)
+        {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Pressione enter para prosseguir...");
+            Console.ReadLine();
+        }
     }
 
     public Revista ObterDadosCadastrais()

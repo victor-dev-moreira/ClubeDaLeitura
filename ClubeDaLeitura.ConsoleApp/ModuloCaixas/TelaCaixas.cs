@@ -1,8 +1,8 @@
 namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas;
 
-public class TelaCaixas()
+public class TelaCaixas
 {
-    private readonly RepositorioCaixa repositorioCaixa;
+    private RepositorioCaixa repositorioCaixa;
 
     public TelaCaixas(RepositorioCaixa repositorioCaixa)
     {

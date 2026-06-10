@@ -15,4 +15,33 @@ public class RepositorioRevista
             }
         }
     }
+    public Revista[] SelecionarTodos()
+    {
+        return registros;
+    }
+
+    public bool Editar(int idSelecionado, Revista novaRevista)
+    {
+        Revista? revistaSelecionada = null;
+
+        for (int i = 0; i < registros.Length; i++)
+        {
+            Revista r = registros[i];
+
+            if (registros[i] == null)
+                continue;
+
+            if (r.Id == idSelecionado)
+            {
+                revistaSelecionada = r;
+                break;
+            }
+        }
+        if (revistaSelecionada == null)
+            return false;
+
+        revistaSelecionada.Atualizar(novaRevista);
+
+        return true;
+    }
 }
