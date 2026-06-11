@@ -31,7 +31,7 @@ public class TelaRevistas
         return opcaoMenu;
     }
 
-    public void Cadastro()
+    public void Cadastrar()
     {
         Console.WriteLine("---------------------------------");
         Console.WriteLine("Gestão de Revistas");
@@ -152,11 +152,11 @@ public class TelaRevistas
             "Id", "Etiqueta", "Cor", "Tempo de Empréstimo"
         );
 
-        Caixa[] registros = repositorioCaixa.SelecionarTodos();
+        object[] registros = repositorioCaixa.SelecionarTodos();
 
         for (int i = 0; i < registros.Length; i++)
         {
-            Caixa c = registros[i];
+            Caixa c = (Caixa)registros[i];
 
             if (c == null)
                 continue;
@@ -173,4 +173,5 @@ public class TelaRevistas
 
         return new Revista(titulo, numeroEdicao, anoPublicacao, caixaSelecionada);
     }
+
 }
