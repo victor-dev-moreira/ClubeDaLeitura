@@ -1,3 +1,4 @@
+using ClubeDaLeitura.ConsoleApp.Compartilhado;
 using ClubeDaLeitura.ConsoleApp.ModuloRevistas;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas;
@@ -40,7 +41,7 @@ public class TelaCaixas
 
         repositorioCaixa.Cadastrar(caixaNova);
 
-        object[] caixas = repositorioCaixa.SelecionarTodos();
+        EntidadeBase[] caixas = repositorioCaixa.SelecionarTodos();
 
         for (int i = 0; i < caixas.Length; i++)
         {
@@ -80,7 +81,7 @@ public class TelaCaixas
 
         Caixa caixaAtualizada = ObterDadosCadastrais();
 
-        object[] caixas = repositorioCaixa.SelecionarTodos();
+        EntidadeBase[] caixas = repositorioCaixa.SelecionarTodos();
 
         for (int i = 0; i < caixas.Length; i++)
         {
@@ -161,7 +162,7 @@ public class TelaCaixas
                 "{0, -7} | {1, -20} | {2, -10} | {3, -20}",
                 "Id", "Etiqueta", "Cor", "Tempo de Empréstimo"
             );
-        object[] registros = repositorioCaixa.SelecionarTodos();
+        EntidadeBase[] registros = repositorioCaixa.SelecionarTodos();
 
         for (int i = 0; i < registros.Length; i++)
         {

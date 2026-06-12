@@ -2,11 +2,8 @@ namespace ClubeDaLeitura.ConsoleApp.Compartilhado;
 
 public abstract class EntidadeBase
 {
-    public string Id { get; set; } = string.Empty;
+    public int Id { get; set; }
 
-    public EntidadeBase()
-    {
-
-    }
+    public abstract void Atualizar(EntidadeBase entidadeAtualizada);
 
 }

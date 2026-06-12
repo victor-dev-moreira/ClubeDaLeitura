@@ -169,7 +169,7 @@ public class TelaRevistas
         Console.Write("Digite o ID do registro que deseja selecionar: ");
         int idSelecionado = int.Parse(Console.ReadLine());
 
-        Caixa? caixaSelecionada = repositorioCaixa.SelecionarPorId(idSelecionado);
+        Caixa? caixaSelecionada = (Caixa)repositorioCaixa.SelecionarPorId(idSelecionado);
 
         return new Revista(titulo, numeroEdicao, anoPublicacao, caixaSelecionada);
     }

@@ -1,9 +1,9 @@
+using ClubeDaLeitura.ConsoleApp.Compartilhado;
 using ClubeDaLeitura.ConsoleApp.Utilidades;
 namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas;
 
-public class Caixa
+public class Caixa : EntidadeBase
 {
-    public int Id { get; private set; }
     public string Etiqueta { get; private set; }
     public string Cor { get; private set; }
     public int DiasDeEmprestimo { get; private set; }
@@ -15,8 +15,10 @@ public class Caixa
         Cor = cor;
         DiasDeEmprestimo = diasDeEmprestimo;
     }
-    public void Atualizar(Caixa caixaAtualizada)
+    public override void Atualizar(EntidadeBase entidadeAtualizada)
     {
+        Caixa caixaAtualizada = (Caixa)entidadeAtualizada;
+
         Etiqueta = caixaAtualizada.Etiqueta;
         Cor = caixaAtualizada.Cor;
         DiasDeEmprestimo = caixaAtualizada.DiasDeEmprestimo;

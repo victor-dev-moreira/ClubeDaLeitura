@@ -1,11 +1,10 @@
 namespace ClubeDaLeitura.ConsoleApp.Compartilhado;
 
-using ClubeDaLeitura.ConsoleApp.ModuloCaixas;
 public class RepositorioBase
 {
-    private object[] registros = new object[100];
+    private EntidadeBase[] registros = new EntidadeBase[100];
 
-    public void Cadastrar(object novaRegistro)
+    public void Cadastrar(EntidadeBase novaRegistro)
     {
         for (int i = 0; i < registros.Length; i++)
         {
@@ -17,8 +16,52 @@ public class RepositorioBase
         }
     }
 
-    public object[] SelecionarTodos()
+    public bool Editar(int idSelecionado, EntidadeBase entidadeAtualizada)
+    {
+        EntidadeBase entidadeSelecionada = SelecionarPorId(idSelecionado);
+
+        if (entidadeSelecionada == null)
+            return false;
+
+        entidadeSelecionada.Atualizar(entidadeAtualizada);
+
+        return true;
+    }
+
+    public void Excluir(int idSelecionado)
+    {
+        for (int i = 0; i < registros.Length; i++)
+        {
+            EntidadeBase o = registros[i];
+
+            if (o == null)
+                continue;
+
+            if (o.Id == idSelecionado)
+            {
+                registros[i] = null;
+                break;
+            }
+        }
+    }
+    public EntidadeBase[] SelecionarTodos()
     {
         return registros;
+    }
+
+    public EntidadeBase SelecionarPorId(int idSelecionado)
+    {
+        for (int i = 0; i < registros.Length; i++)
+        {
+            EntidadeBase o = registros[i];
+
+            if (o == null)
+                continue;
+
+            if (o.Id == idSelecionado)
+                return o;
+        }
+
+        return null;
     }
 }
