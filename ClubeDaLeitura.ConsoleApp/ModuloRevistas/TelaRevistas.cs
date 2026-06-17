@@ -1,3 +1,4 @@
+using ClubeDaLeitura.ConsoleApp.Compartilhado;
 using ClubeDaLeitura.ConsoleApp.ModuloCaixas;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas;
@@ -75,21 +76,12 @@ public class TelaRevistas
 
         Visualizar(false);
 
+        Console.WriteLine("---------------------------------");
+
         Console.Write("Qual ID da revista que deseja excluir? ");
         int idSelecionado = int.Parse(Console.ReadLine());
 
-        Revista[] registros = repositorioRevista.SelecionarTodos();
-
-        for (int i = 0; i < registros.Length; i++)
-        {
-            Revista r = registros[i];
-
-            if (r.Id == idSelecionado)
-            {
-                registros[i] = null;
-                break;
-            }
-        }
+        repositorioRevista.Excluir(idSelecionado);
 
         Console.WriteLine("---------------------------------");
         Console.WriteLine($"Revista {idSelecionado} excluida com sucesso!");
@@ -111,11 +103,11 @@ public class TelaRevistas
             "Id", "Etiqueta", "Cor", "Tempo de Empréstimo", "Caixa"
         );
 
-        Revista[] registros = repositorioRevista.SelecionarTodos();
+        EntidadeBase[] registros = repositorioRevista.SelecionarTodos();
 
         for (int i = 0; i < registros.Length; i++)
         {
-            Revista r = registros[i];
+            Revista r = (Revista)registros[i];
 
             if (registros[i] == null)
                 continue;
@@ -152,7 +144,7 @@ public class TelaRevistas
             "Id", "Etiqueta", "Cor", "Tempo de Empréstimo"
         );
 
-        object[] registros = repositorioCaixa.SelecionarTodos();
+        EntidadeBase[] registros = repositorioCaixa.SelecionarTodos();
 
         for (int i = 0; i < registros.Length; i++)
         {

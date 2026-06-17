@@ -122,11 +122,11 @@ public class TelaCaixas
         Console.Write("Qual Id do registro que deseja excluir? ");
         int idSelecionado = int.Parse(Console.ReadLine());
 
-        Revista[] revistas = repositorioRevista.SelecionarTodos();
+        EntidadeBase[] revistas = repositorioRevista.SelecionarTodos();
 
         for (int i = 0; i < revistas.Length; i++)
         {
-            Revista r = revistas[i];
+            Revista r = (Revista)revistas[i];
 
             if (r == null)
                 continue;
