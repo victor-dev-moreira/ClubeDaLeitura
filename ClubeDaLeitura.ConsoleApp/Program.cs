@@ -2,13 +2,11 @@
 using ClubeDaLeitura.ConsoleApp.ModuloCaixas;
 using ClubeDaLeitura.ConsoleApp.ModuloRevistas;
 
-RepositorioBase repositorioBase = new RepositorioBase();
-
 RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
 RepositorioRevista repositorioRevista = new RepositorioRevista();
 
-TelaCaixas telaCaixas = new TelaCaixas(repositorioCaixa, repositorioRevista);
-TelaRevistas telaRevista = new TelaRevistas(repositorioRevista, repositorioCaixa);
+TelaCaixas telaCaixas = new TelaCaixas("Caixa", repositorioCaixa, repositorioRevista);
+TelaRevistas telaRevista = new TelaRevistas("Revista", repositorioCaixa, repositorioRevista);
 
 Caixa caixaTeste = new Caixa("Acão", "Vermelho", 5);
 Revista revistaTeste = new Revista("Action Comics", 1, 1976, caixaTeste);
@@ -29,7 +27,7 @@ while (true)
     {
         while (true)
         {
-            string opcaoMenuInterno = telaCaixas.ObterMenuCaixas();
+            string opcaoMenuInterno = telaCaixas.ObterMenu();
 
             if (opcaoMenuInterno == "S")
                 break;
@@ -54,7 +52,7 @@ while (true)
     }
     else if (opcaoMenuPrincipal == "2") // Revistas
     {
-        string opcaoMenuInterno = telaRevista.ObterMenuRevista();
+        string opcaoMenuInterno = telaRevista.ObterMenu();
         if (opcaoMenuInterno == "S")
             break;
 
