@@ -6,7 +6,8 @@ public class TelaCaixas : TelaBase
 {
     private readonly RepositorioCaixa repositorioCaixa;
     private readonly RepositorioRevista repositorioRevista;
-    public TelaCaixas(string nomeEntidade,
+    public TelaCaixas(
+    string nomeEntidade,
     RepositorioCaixa repositorioCaixa,
     RepositorioRevista repositorioRevista) : base(nomeEntidade, repositorioCaixa)
     {

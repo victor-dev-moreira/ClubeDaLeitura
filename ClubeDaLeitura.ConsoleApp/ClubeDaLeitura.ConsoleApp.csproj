@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="ModuloAmigo\" />
+    <Folder Include="ModuloEmprestimo\" />
     <Folder Include="ModuloRevistas\" />
   </ItemGroup>
 
