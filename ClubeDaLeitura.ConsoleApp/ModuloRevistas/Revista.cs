@@ -13,11 +13,20 @@ using ClubeDaLeitura.ConsoleApp.Utilidades;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas;
 
+public enum StatusRevista
+{
+    Disponivel,
+    Emprestada,
+    Reservada
+}
 public class Revista : EntidadeBase
 {
     public string Titulo { get; private set; }
     public int NumeroEdicao { get; private set; }
     public int AnoPublicacao { get; private set; }
+    public StatusRevista Status { get; private set; } = StatusRevista.Disponivel;
+
+
     public Caixa Caixa { get; private set; }
 
     public Revista(string titulo, int numeroEdicao, int anoPublicacao, Caixa caixa)
@@ -46,5 +55,19 @@ public class Revista : EntidadeBase
         NumeroEdicao = revistaAtualizada.NumeroEdicao;
         AnoPublicacao = revistaAtualizada.AnoPublicacao;
         Caixa = revistaAtualizada.Caixa;
+    }
+    public void Emprestar()
+    {
+        Status = StatusRevista.Emprestada;
+    }
+
+    public void Devolver()
+    {
+        Status = StatusRevista.Disponivel;
+    }
+
+    public void Reservar()
+    {
+        Status = StatusRevista.Reservada;
     }
 }

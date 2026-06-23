@@ -25,8 +25,8 @@ public class TelaRevistas : TelaBase
         }
 
         Console.WriteLine(
-            "{0, -7} | {1, -20} | {2, -10} | {3, -20} | {4, -20}",
-            "Id", "Etiqueta", "Cor", "Tempo de Empréstimo", "Caixa"
+            "{0, -6} | {1, -20} | {2, -10} | {3, -25} | {4, -20} | {5, -15}",
+            "Id", "Etiqueta", "Edicão", "Ano de publicacão", "Caixa", "Status"
         );
 
         EntidadeBase[] registros = repositorioRevista.SelecionarTodos();
@@ -39,8 +39,8 @@ public class TelaRevistas : TelaBase
                 continue;
 
             Console.WriteLine(
-            "{0, -7} | {1, -20} | {2, -10} | {3, -20} | {4, -20}",
-            r.Id, r.Titulo, r.NumeroEdicao, r.AnoPublicacao, r.Caixa.Etiqueta
+            "{0, -6} | {1, -20} | {2, -10} | {3, -25} | {4, -20} | {5, -15}",
+            r.Id, r.Titulo, r.NumeroEdicao, r.AnoPublicacao, r.Caixa.Etiqueta, r.Status
             );
         }
 
@@ -65,7 +65,7 @@ public class TelaRevistas : TelaBase
         Console.WriteLine("---------------------------------");
 
         Console.WriteLine(
-            "{0, -7} | {1, -20} | {2, -10} | {3, -20}",
+            "{0, -7} | {1, -20} | {2, -10} | {3, -20} | {4, -15}",
             "Id", "Etiqueta", "Cor", "Tempo de Empréstimo"
         );
 
