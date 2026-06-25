@@ -13,7 +13,7 @@ RepositorioEmprestimo repositorioEmprestimo = new RepositorioEmprestimo();
 TelaCaixas telaCaixas = new TelaCaixas("Caixa", repositorioCaixa, repositorioRevista);
 TelaRevistas telaRevista = new TelaRevistas("Revista", repositorioCaixa, repositorioRevista);
 TelaAmigo telaAmigo = new TelaAmigo("Amigo", repositorioAmigo);
-TelaEmprestimo telaEmprestimo = new TelaEmprestimo();
+TelaEmprestimo telaEmprestimo = new TelaEmprestimo("Emprestimo", repositorioEmprestimo, repositorioAmigo, repositorioRevista);
 
 Caixa caixaTeste = new Caixa("Acão", "Vermelho", 5);
 Revista revistaTeste = new Revista("Action Comics", 1, 1976, caixaTeste);
@@ -109,25 +109,21 @@ while (true)
     }
     else if (opcaoMenuPrincipal == "4") // Emprestimos
     {
-        string opcaoMenuInterno = telaAmigo.ObterMenu();
+        string opcaoMenuInterno = telaEmprestimo.ObterMenu();
         if (opcaoMenuInterno == "S")
             break;
 
         else if (opcaoMenuInterno == "1")
         {
-            telaAmigo.Cadastrar();
+            telaEmprestimo.Abrir();
         }
         else if (opcaoMenuInterno == "2")
         {
-            telaAmigo.Editar();
+            telaEmprestimo.Concluir();
         }
         else if (opcaoMenuInterno == "3")
         {
-            telaAmigo.Excluir();
-        }
-        else if (opcaoMenuInterno == "4")
-        {
-            telaAmigo.Visualizar(true);
+            telaEmprestimo.Visualizar(true);
         }
     }
 }

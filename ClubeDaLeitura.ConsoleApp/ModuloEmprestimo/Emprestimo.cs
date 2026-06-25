@@ -11,7 +11,7 @@ public enum StatusEmprestimos
 {
     Aberto,
     Concluido,
-    Atrasdo
+    Atrasado
 }
 public class Emprestimo : EntidadeBase
 {
@@ -40,6 +40,8 @@ public class Emprestimo : EntidadeBase
 
     public override void Atualizar(EntidadeBase entidadeAtualizada)
     {
-        throw new NotImplementedException();
+        Emprestimo emprestimoAtualizado = (Emprestimo)entidadeAtualizada;
+
+        Status = emprestimoAtualizado.Status;
     }
 }
