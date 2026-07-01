@@ -34,6 +34,9 @@ public abstract class TelaBase
 
         EntidadeBase entidadeNova = ObterDadosCadastrais();
 
+        if (entidadeNova == null)
+            return;
+
         repositorio.Cadastrar(entidadeNova);
 
         Console.WriteLine("---------------------------------");
@@ -64,7 +67,7 @@ public abstract class TelaBase
         Console.WriteLine("Digite ENTER para continuar");
         Console.ReadLine();
     }
-    public void Excluir()
+    public virtual void Excluir()
     {
         Console.WriteLine("---------------------------------");
         Console.WriteLine($"Exclusão de {nomeEntidade}");

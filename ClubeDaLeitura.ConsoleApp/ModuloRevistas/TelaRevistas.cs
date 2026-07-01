@@ -1,5 +1,6 @@
 using ClubeDaLeitura.ConsoleApp.Compartilhado;
 using ClubeDaLeitura.ConsoleApp.ModuloCaixas;
+using ClubeDaLeitura.ConsoleApp.ModuloEmprestimo;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas;
 
@@ -7,13 +8,49 @@ public class TelaRevistas : TelaBase
 {
     private readonly RepositorioRevista repositorioRevista;
     private readonly RepositorioCaixa repositorioCaixa;
+    private readonly RepositorioEmprestimo repositorioEmprestimo;
     public TelaRevistas(
         string nomeEntidade,
         RepositorioCaixa repositorioCaixa,
-        RepositorioRevista repositorioRevista) : base(nomeEntidade, repositorioRevista)
+        RepositorioRevista repositorioRevista,
+        RepositorioEmprestimo repositorioEmprestimo) : base(nomeEntidade, repositorioRevista)
     {
         this.repositorioRevista = repositorioRevista;
         this.repositorioCaixa = repositorioCaixa;
+        this.repositorioEmprestimo = repositorioEmprestimo;
+    }
+
+    public override void Excluir()
+    {
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine($"Exclusão de Revista");
+        Console.WriteLine("---------------------------------");
+
+        Visualizar(false);
+
+        Console.WriteLine("---------------------------------");
+        Console.Write("Qual Id do registro que deseja excluir? ");
+        int idSelecionado = int.Parse(Console.ReadLine());
+
+        Revista revista = (Revista)repositorioRevista.SelecionarPorId(idSelecionado);
+
+        bool revistaTeste = repositorioEmprestimo.RevistaEmprestimo(revista);
+
+        if (revistaTeste == true)
+        {
+            Console.WriteLine("Não foi possivel criar a revista pois ela esta emprestada!");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Pressione enter para prosseguir...");
+            Console.ReadLine();
+            return;
+        }
+
+        repositorioRevista.Excluir(idSelecionado);
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine($"O registro de ID \"{idSelecionado}\" foi excluído com sucesso!");
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Digite ENTER para continuar");
+        Console.ReadLine();
     }
     public override void Visualizar(bool deveExibirCabecalho)
     {
@@ -40,7 +77,7 @@ public class TelaRevistas : TelaBase
 
             Console.WriteLine(
             "{0, -6} | {1, -20} | {2, -10} | {3, -25} | {4, -20} | {5, -15}",
-            r.Id, r.Titulo, r.NumeroEdicao, r.AnoPublicacao, r.Caixa.Etiqueta, r.Status
+            r.Id, r.Titulo, r.NumeroEdicao, r.AnoPublicacao, r.Caixa.Etiqueta, r.Status.ToString()
             );
         }
 
@@ -58,6 +95,17 @@ public class TelaRevistas : TelaBase
 
         Console.Write("Qual numero de edicão? ");
         int numeroEdicao = int.Parse(Console.ReadLine());
+
+        bool tituloEdicaoRepetido = repositorioRevista.TituloEdicaoRepetido(titulo, numeroEdicao);
+
+        if (tituloEdicaoRepetido == true)
+        {
+            Console.WriteLine("Não foi possivel criar a revista pois a edicão ou titulo ja existe!");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Pressione enter para prosseguir...");
+            Console.ReadLine();
+            return null;
+        }
 
         Console.Write("Qual o ano de publicacão? ");
         int anoPublicacao = int.Parse(Console.ReadLine());

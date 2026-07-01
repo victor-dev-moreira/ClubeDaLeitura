@@ -11,8 +11,8 @@ RepositorioEmprestimo repositorioEmprestimo = new RepositorioEmprestimo();
 
 
 TelaCaixas telaCaixas = new TelaCaixas("Caixa", repositorioCaixa, repositorioRevista);
-TelaRevistas telaRevista = new TelaRevistas("Revista", repositorioCaixa, repositorioRevista);
-TelaAmigo telaAmigo = new TelaAmigo("Amigo", repositorioAmigo);
+TelaRevistas telaRevista = new TelaRevistas("Revista", repositorioCaixa, repositorioRevista, repositorioEmprestimo);
+TelaAmigo telaAmigo = new TelaAmigo("Amigo", repositorioAmigo, repositorioEmprestimo);
 TelaEmprestimo telaEmprestimo = new TelaEmprestimo("Emprestimo", repositorioEmprestimo, repositorioAmigo, repositorioRevista);
 
 Caixa caixaTeste = new Caixa("Acão", "Vermelho", 5);
