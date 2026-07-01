@@ -20,11 +20,38 @@ public class TelaAmigo : TelaBase
         Console.Write("Digite o nome do amigo: ");
         string? nomeAmigo = Console.ReadLine();
 
+        if (nomeAmigo.Length < 3 || nomeAmigo.Length > 100)
+        {
+            Console.WriteLine("O nome do amigo passou de 100 caracteres ou é menor que 3 caracteres, não foi possivel criar o amigo!");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Pressione enter para prosseguir...");
+            Console.ReadLine();
+            return null;
+        }
+
         Console.Write("Digite o nome do responsavel: ");
         string? nomeResponsavel = Console.ReadLine();
 
+        if (nomeResponsavel.Length < 3 || nomeResponsavel.Length > 100)
+        {
+            Console.WriteLine("O nome do responsavel passou de 100 caracteres ou é menor que 3 caracteres, não foi possivel criar o amigo!");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Pressione enter para prosseguir...");
+            Console.ReadLine();
+            return null;
+        }
+
         Console.Write("Informe o numero de telefone: ");
         string? telefone = Console.ReadLine();
+
+        if (telefone.Length < 10 || telefone.Length > 11)
+        {
+            Console.WriteLine("O numero de telefone é menor que 10 numeros ou maior que 11, não foi possivel criar o amigo!");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Pressione enter para prosseguir...");
+            Console.ReadLine();
+            return null;
+        }
 
         bool nomeTelefoneRepetido = repositorioAmigo.NomeTelefoneRepetido(nomeAmigo, telefone);
 

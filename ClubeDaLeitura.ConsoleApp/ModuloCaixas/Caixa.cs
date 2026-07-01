@@ -6,8 +6,8 @@ public class Caixa : EntidadeBase
 {
     public string Etiqueta { get; private set; }
     public string Cor { get; private set; }
-    public int DiasDeEmprestimo { get; private set; }
-    public Caixa(string etiqueta, string cor, int diasDeEmprestimo)
+    public int DiasDeEmprestimo { get; private set; } = 7;
+    public Caixa(string etiqueta, string cor, int diasDeEmprestimo = 7)
     {
         Id = GeradorIds.ObterIdsCaixa();
 

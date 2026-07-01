@@ -93,8 +93,26 @@ public class TelaRevistas : TelaBase
         Console.Write("Qual titulo da Revista? ");
         string titulo = Console.ReadLine();
 
+        if (titulo.Length < 2 || titulo.Length > 100)
+        {
+            Console.WriteLine("O titulo passou de 100 caracteres ou é menor que dois caracteres, não foi possivel criar a revista!");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Pressione enter para prosseguir...");
+            Console.ReadLine();
+            return null;
+        }
+
         Console.Write("Qual numero de edicão? ");
         int numeroEdicao = int.Parse(Console.ReadLine());
+
+        if (numeroEdicao <= 0)
+        {
+            Console.WriteLine("Não é possivel criar com uma edicão menor que zero!");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Pressione enter para prosseguir...");
+            Console.ReadLine();
+            return null;
+        }
 
         bool tituloEdicaoRepetido = repositorioRevista.TituloEdicaoRepetido(titulo, numeroEdicao);
 
@@ -109,6 +127,15 @@ public class TelaRevistas : TelaBase
 
         Console.Write("Qual o ano de publicacão? ");
         int anoPublicacao = int.Parse(Console.ReadLine());
+
+        if (anoPublicacao < 1000 || anoPublicacao > 2026)
+        {
+            Console.WriteLine("Não é possivel criar com ano de publicacão for menor que 1000 ou maior que 2026!");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Pressione enter para prosseguir...");
+            Console.ReadLine();
+            return null;
+        }
 
         Console.WriteLine("---------------------------------");
 

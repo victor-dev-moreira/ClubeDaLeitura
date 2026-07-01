@@ -85,6 +85,15 @@ public class TelaCaixas : TelaBase
         Console.Write("Digite o nome da etiqueta da caixa: ");
         string? etiqueta = Console.ReadLine();
 
+        if (etiqueta.Length > 50)
+        {
+            Console.WriteLine("A etiqueta passou de 50 caracteres, não foi possivel criar a caixa!");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Pressione enter para prosseguir...");
+            Console.ReadLine();
+            return null;
+        }
+
         bool etiquetaRepetida = repositorioCaixa.EtiquetasDuplicadas(etiqueta);
 
         if (etiquetaRepetida == true)
