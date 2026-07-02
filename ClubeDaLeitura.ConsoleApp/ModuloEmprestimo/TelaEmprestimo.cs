@@ -4,7 +4,7 @@ using ClubeDaLeitura.ConsoleApp.ModuloRevistas;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo;
 
-public class TelaEmprestimo
+public class TelaEmprestimo : ITelaOpcoes
 {
     private readonly RepositorioEmprestimo repositorioEmprestimo;
     private readonly RepositorioAmigo repositorioAmigo;
@@ -171,4 +171,5 @@ public class TelaEmprestimo
             );
         }
     }
+
 }

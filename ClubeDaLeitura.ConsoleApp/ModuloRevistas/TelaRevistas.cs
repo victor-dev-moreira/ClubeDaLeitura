@@ -4,7 +4,7 @@ using ClubeDaLeitura.ConsoleApp.ModuloEmprestimo;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloRevistas;
 
-public class TelaRevistas : TelaBase
+public class TelaRevistas : TelaBase, ITelaOpcoes
 {
     private readonly RepositorioRevista repositorioRevista;
     private readonly RepositorioCaixa repositorioCaixa;
@@ -52,6 +52,7 @@ public class TelaRevistas : TelaBase
         Console.WriteLine("Digite ENTER para continuar");
         Console.ReadLine();
     }
+
     public override void Visualizar(bool deveExibirCabecalho)
     {
         if (deveExibirCabecalho)

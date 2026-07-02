@@ -2,7 +2,7 @@ using ClubeDaLeitura.ConsoleApp.Compartilhado;
 using ClubeDaLeitura.ConsoleApp.ModuloRevistas;
 namespace ClubeDaLeitura.ConsoleApp.ModuloCaixas;
 
-public class TelaCaixas : TelaBase
+public class TelaCaixas : TelaBase, ITelaOpcoes
 {
     private readonly RepositorioCaixa repositorioCaixa;
     private readonly RepositorioRevista repositorioRevista;
@@ -115,6 +115,4 @@ public class TelaCaixas : TelaBase
 
         return novaCaixa;
     }
-
-
 }
